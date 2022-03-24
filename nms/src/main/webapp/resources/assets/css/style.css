@@ -1,0 +1,428 @@
+@charset "utf-8";
+
+li {list-style:none;}
+
+	.sidebar-wrapper {
+		width: 22%;
+		height: 100%;
+	}
+
+	.sidebar-header {
+		width: 22%;
+	}
+
+	.topbar {
+		left: 23%;
+		overflow: hidden;
+		padding-left: 37%;
+	}
+
+	.tab_btn {
+		display: block;
+		color: #000;
+		width: 14.5%;
+		height: 40px;
+		font-size: 0.9vw;
+		text-align: center;
+		line-height: 40px;
+		margin: 10px 0.1% 0;
+		border: 3px solid #AAA;
+		border-bottom: 0;
+	}
+
+	.tab_btn:hover {color: #CCC;}
+
+	/*선택시 버튼 색상과 그래프 border색상*/
+
+	.blue {
+		color: #FFF;
+		background-color: #20c3db;
+	}
+
+	.blue_border {
+		border: 0.3vw solid #20c3db;
+	}
+
+	.yellow {
+		color: #FFF;
+		background-color: #fbce63;
+	}
+
+	.yellow_border {
+		border: 0.3vw solid #fbce63;
+	}
+
+	.green {
+		color: #FFF;
+		background-color: #afce70;
+	}
+
+	.green_border {
+		border: 0.3vw solid #afce70;
+	}
+
+
+
+	.switcher-wrapper {
+		width: 130px;
+		right: -110px;
+	}
+
+	.page-wrapper {
+		margin-left: 22%;
+	}
+
+	.sidebar-wrapper h2 {
+		color: #003E00;
+		font-size: 1.15vw;
+		font-weight: 600;
+		padding: 20px 0 10px 30px;
+		margin: 0 10px;
+		border-bottom: 0.3vw double #333;
+	}
+
+	.sidebar-wrapper .metismenu {
+		padding-top: 0;
+		margin-top: 0;		
+		}
+
+	.sidebar-wrapper .metismenu a {
+		font-size: 0.75vw;
+		border-bottom: 0.1vw dotted #DDD;}
+
+	.menu_floor {
+		padding-left: 15px;
+		border-bottom: 2px dotted #DDD;	
+	}
+
+	.menu_floor p {
+		margin-left: 5%;
+		margin-bottom: 0;
+		}
+
+	.menu-label {
+		color: #fff;
+		background-color: #425b5f;
+		font-size: 0.8vw;
+		padding: 10px;
+	}
+
+	.main_title {
+		font-size: 0.75vw;
+		font-weight: 600;
+		line-height: 28px;		
+	}
+
+	.menu_tit {
+		color: #0d6efd;
+		font-size: 0.75vw;
+		line-height: 30px;
+	}
+
+	.menu_data {
+		font-size: 0.75vw;
+		line-height: 30px;
+	}
+
+	.menu_sym {
+		font-size: 0.75vw;
+		line-height: 30px;
+		padding-right: 5px;
+	}
+
+
+#main_menu {
+	width: 90%;
+	height: 98.7%;
+	background-color: #535a62;
+	padding-top: 50px;
+	margin-left: 0.3vw;
+	margin-top: 0.6vh;
+}
+
+#main_menu ul {padding-left: 0;}
+
+
+#main_menu a {
+	display: block;
+	width: 90%;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 2vh;
+	
+}
+
+
+	.main_menu_icon {
+		display: block;
+		width: 50%;
+		margin: 0 auto;
+	}
+
+	.main_menu_tit {
+		color: #AAA;
+		font-size:  0.7vw;
+		font-weight: 900;
+		line-height: 45px;
+	}
+
+	.main_menu_tit_on {
+		color: #FFF;
+		font-size: 0.7vw;
+		font-weight: 900;
+		line-height: 45px;
+	}
+
+	.main_menu_tit:hover {color: #FFF;}
+
+	.chart_title_form {
+		overflow: hidden;
+		width: 100%;
+		margin: 0;
+		padding-left: 2rem;
+	}
+
+	.chart_title{
+		float: left;
+		display: block;
+		color: #665C00;
+		font-size: 1.2vw;
+		font-weight: 900;
+		line-height: 4.8vh;
+		padding-right: 5px;
+	}
+
+	.chart_tit{
+		float: left;
+		display: block;
+		width: 3vw;
+		color: #993800;
+		font-size: 0.9vw;
+		font-weight: 900;
+		line-height: 4.8vh;
+		margin-left: 2rem;
+	}
+
+	.chart_data {
+		float: left;
+		display: block;
+		width: 5vw;
+		color: #999;
+		font-size: 1vw;
+		line-height: 4.8vh;
+		text-align: right;
+	}
+
+	.chart_sym {
+		float: left;
+		display: block;
+		color: #999;
+		font-size: 1vw;
+		line-height: 4.8vh;
+		text-align: right;
+		margin-left: 0.2vw;
+	}
+
+	.mb-0 {
+		float: left;
+		width: 6vw;
+		font-size: 0.9vw;
+		line-height: 30px;
+		padding-left: 1.5rem;
+	}
+
+	.badge {
+		float: right;
+		background-color: #FFF !important;		
+		color: #282828;
+		font-size: 1.1vw;
+		padding: 0 .65em .45em;
+	} 
+	
+	.mt-4 {margin-top: 5px !important;}
+
+	.chart-container-2 {height: 14.4vh;}
+
+	.rounded-pill {border-radius: 5px !important;}
+
+	.card-body >div {
+		overflow: hidden;
+	}
+
+	.last-card .card {margin-bottom: 0;}
+
+	.card-body {padding-bottom: 0;}
+
+	.page-content {
+		float: left;
+		width: 71%;
+		padding: 0 0 0.7rem 1.5rem;
+	}
+
+	.right_menu {
+		 position:fixed;
+		 top:70px;
+		 right:25px;
+		 width: 20%;
+	}
+
+	.switcher-btn {
+		height: 60px;
+		padding-top: 10px;	
+		top: 3%;
+	}
+
+	.usage_form {
+		padding-top: 10px;
+	}
+
+	.card {margin-bottom: 0.5rem;}
+
+	.table>:not(:first-child) {border-top: 0;}
+
+	.warning_list tbody>tr:nth-child(even) {
+		color: #930000 !important;
+	}
+
+	.warning_list tbody>tr:nth-child(odd) {
+		color: #FFF !important;
+		background-color: #e45959 !important;			
+		}
+
+	.warning_list {width: 100%  !important;}
+
+	.warning_list tbody {
+		display: block;
+		overflow-y: scroll;
+		height: 21vh !important;		
+		}
+
+	.warning_list th {
+		width: 130px !important;
+		border-right: 0;
+		}
+
+	.table-responsive {
+		width: 92%;
+		margin: 0 auto;
+		margin-top: 2vh;
+	}
+
+	.table-responsive thead {
+		display: block;
+		border-top: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
+		}
+
+	.table-responsive tbody {
+		display: block;
+		overflow-y: scroll;
+		height: 48vh;		
+		}
+
+	.table-responsive th {
+		width: 300px;
+		font-size: 0.75vw;
+		border-right: 0;
+		}
+
+	.table-responsive td {
+		width: 20vw;
+		font-size: 0.75vw;
+		padding-left: 30px;
+		}
+
+	.redColor {
+		color: #930000 !important;
+		font-weight: 600;
+		}
+
+	.col-md-6 {width: 100%;}
+
+	.ellipsis {
+		width: 7vw;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;  /* 말줄임 적용 */
+		margin-bottom: 0;
+		}
+
+	.spinner-grow {
+			width: 2rem;
+			height: 2rem;
+			background-color: #dc3545;
+			margin-left: 34%;
+			animation: .98s linear infinite spinner-grow;
+		}
+
+
+	/*온오프버튼*/
+
+	.switch-button { 
+		position: relative; 
+		display: inline-block;
+		width: 3vw; 
+		height: 1.6vw; 
+		margin-left: 15px;
+	} 
+
+	.switch-button input { 
+		opacity: 0; 
+		width: 0; 
+		height: 0; 
+	} 
+
+	.onoff-switch {
+		position: absolute; 
+		cursor: pointer; 
+		top: 0; 
+		left: 0; 
+		right: 0; 
+		bottom: 0;
+		border-radius:20px; 
+		background-color: #ccc; 
+		box-shadow: inset 1px 5px 1px #999; 
+		-webkit-transition: .4s; 
+		transition: .4s; 
+	} 
+	
+	.onoff-switch:before { 
+		position: absolute; 
+		content: ""; 
+		height: 1.15vw; 
+		width: 1.15vw; 
+		left: 0.2vw; 
+		bottom: 0.2vw;
+		background-color: #fff; 
+		-webkit-transition: .5s; 
+		transition: .4s; 
+		border-radius:20px; 
+	} 
+	
+	.switch-button input:checked + .onoff-switch { 
+		background-color: #dc3545; 
+		box-shadow: inset 1px 3px 1px #E3AE56;  
+	} 
+	
+	.switch-button input:checked + .onoff-switch:before { 
+		-webkit-transform: translateX(1.2vw); 
+		-ms-transform: translateX(1.2vw);
+		transform: translateX(1.2vw); 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
