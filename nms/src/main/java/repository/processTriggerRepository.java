@@ -25,7 +25,7 @@ public class processTriggerRepository {
     public processTriggerDTO getProcessTriggerDto(String id) {
     	String itemid="";
     	for(int i=0; i<processTriggerRepository.size(); i++) {
-    		itemid = processTriggerRepository.get(i).getItemid();
+    		itemid = processTriggerRepository.get(i).getTriggerid();
     		if(id.equals(itemid)) {
     			return processTriggerRepository.get(i);
     		}
@@ -36,8 +36,8 @@ public class processTriggerRepository {
     public boolean updateProcessTriggerDto(processTriggerDTO newItem) {
     	String itemid="";
     	for(int i=0; i<processTriggerRepository.size(); i++) {
-    		itemid = processTriggerRepository.get(i).getItemid();
-    		if(newItem.getItemid().equals(itemid)) {
+    		itemid = processTriggerRepository.get(i).getTriggerid();
+    		if(newItem.getTriggerid().equals(itemid)) {
     			processTriggerRepository.set(i, newItem);
     			return true;
     		}

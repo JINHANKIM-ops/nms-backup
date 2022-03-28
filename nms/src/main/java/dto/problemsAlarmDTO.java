@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.ArrayList;
+
 public class problemsAlarmDTO {
 	private String eventid;
 	private String r_eventid;
@@ -8,6 +10,7 @@ public class problemsAlarmDTO {
 	private String r_clock;
 	private String clock;
 	private String objectid;
+	private ArrayList<String> item = new ArrayList<String>();
 	
 	public String getEventid() {
 		return eventid;
@@ -50,6 +53,17 @@ public class problemsAlarmDTO {
 	}
 	public void setObjectid(String objectid) {
 		this.objectid = objectid;
+	}
+	public ArrayList<String> getItem() {
+		return item;
+	}
+	public void setItem(ArrayList<String> item) {
+		this.item = item;
+	}
+	@Override
+	public String toString() {
+		return "problemsAlarmDTO [eventid=" + eventid + ", r_eventid=" + r_eventid + ", r_ns=" + r_ns + ", name=" + name
+				+ ", r_clock=" + r_clock + ", clock=" + clock + ", objectid=" + objectid + ", item=" + item + "]";
 	}
 	
 }

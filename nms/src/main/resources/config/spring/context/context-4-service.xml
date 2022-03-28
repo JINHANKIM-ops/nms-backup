@@ -14,6 +14,8 @@
 		<beans:property name="process_Itemrepository" ref="nms_processItemBean" />
 		<beans:property name="process_Triggerrepository" ref="nms_processTriggerBean" />
 		<beans:property name="problems_Alarmrepository" ref="nms_problemsAlarmBean" />
+		<beans:property name="problems_Alarmcheck" ref="nms_problemsAlarmCheckBean" />
+		<beans:property name="problems_Groupcheck" ref="nms_problemsGroupCheckBean" />
 	</beans:bean>
 	
 </beans:beans>

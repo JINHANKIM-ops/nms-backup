@@ -7,11 +7,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import dto.processTriggerDTO;
 
 public class processTriggerApi {
-	
+	private static final Logger logger = LoggerFactory.getLogger(processTriggerApi.class);
 	public List<processTriggerDTO> processTrigger() throws ParseException{
 		String auth = "47405086481398866b0696edf90bfa53";
 		String g_invokeId = "0";
@@ -42,7 +44,7 @@ public class processTriggerApi {
 		selectFunctions.add(0, "itemid");
 
 		processTriggerData = api.Post(json);
-
+		// logger.info("triggerData: {}", processTriggerData);
 		JSONParser parser = new JSONParser();
 		Object processTrigger = parser.parse(processTriggerData);
 		JSONObject processTrigger_obj = (JSONObject) processTrigger;
@@ -54,14 +56,13 @@ public class processTriggerApi {
 			JSONObject processTrigger_objs = (JSONObject)processTrigger_arr.get(idx);
 			processTriggerDto.setExpression(processTrigger_objs.get("expression").toString());
 			JSONArray functions_arr = (JSONArray)processTrigger_objs.get("functions");
-			JSONObject functions_obj = (JSONObject)functions_arr.get(0);
-			processTriggerDto.setItemid(functions_obj.get("itemid").toString());
-			processTriggerDto.setFunctionid(functions_obj.get("functionid").toString());
+			processTriggerDto.setFunctions(functions_arr);
 			processTriggerDto.setTriggerid(processTrigger_objs.get("triggerid").toString());
 			processTriggerDto.setDescription(processTrigger_objs.get("description").toString());
 			processTriggerDto.setPriority(processTrigger_objs.get("priority").toString());
 			
 			processTrigger_list.add(processTriggerDto);
+			// logger.info("trigger: {}", processTriggerDto);
 		}
 		return processTrigger_list;
 	}

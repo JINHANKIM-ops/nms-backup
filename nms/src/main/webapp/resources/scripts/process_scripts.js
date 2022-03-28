@@ -28,7 +28,7 @@ function getProblemsAlarm() {
     }
 
     $.ajax({
-        url: encodeURI(ZABBIX_API_URL),
+        url: encodeURI("problemsAlarmItem.do"),
         type: 'POST',
         accept: 'application/json',
         contentType: 'application/json-rpc',
@@ -42,7 +42,7 @@ function getProblemsAlarm() {
                 console.log(res.error);
             } else {
                 // console.log("getProblemsAlarm_res:", JSON.stringify(res.result));
-                g_processProblemList = res.result;
+                g_processProblemList = res;
                 for (let p = 0; p < g_processProblemList.length; p++) {
                     g_processProblemList[p].items = [];
                     // "0" 이 아닌 것은 이미 해결된 것이다.
@@ -67,7 +67,7 @@ function getProblemsAlarm() {
         },
         error: function () {
             // 여기서 타이머를 멈추면 Alert 창이 나오지 않는다.
-            console.log(`getProcessTriggers : Can not connect server ${ZABBIX_API_URL}`);
+            console.log(`getProblemsAlarm : Can not connect server ${ZABBIX_API_URL}`);
             return;
         },
         complete: function () {
@@ -112,7 +112,7 @@ function getProcessItems() {
     }
 
     $.ajax({
-        url: encodeURI(ZABBIX_API_URL),
+        url: encodeURI("processItem.do"),
         type: 'POST',
         accept: 'application/json',
         contentType: 'application/json-rpc',
@@ -121,20 +121,17 @@ function getProcessItems() {
         beforeSend: function () {
         },
         success: function (res) {
+		console.log("process:"+JSON.stringify(res));
             if (res.error) {
                 // 여기서 타이머를 멈추면 Alert 창이 나오지 않는다.
                 console.log(res.error);
             } else {
                 // console.log("getProcessItems_res:", JSON.stringify(res.result));
                 // 결과, 감시 중인 프로세스 이름 설정. g_processTriggerList[t].functions[f].itemname
-                g_processItemList = res.result;
+                g_processItemList = res;
                 for (let t = 0; t < g_processTriggerList.length; t++) {
                     for (let f = 0; f < g_processTriggerList[t].functions.length; f++) {
                         for (let i = 0; i < g_processItemList.length; i++) {
-                            if (g_processTriggerList[t].functions[f].itemid == '38877') {
-                                console.log('FINDFINDFIND38877');
-                                console.log(g_processItemList[i]);
-                            }
                             if (g_processTriggerList[t].functions[f].itemid == g_processItemList[i].itemid) {
                                 g_processTriggerList[t].functions[f].item = g_processItemList[i];
                                 break;
@@ -184,7 +181,7 @@ function getProcessTriggers() {
     ];
 
     $.ajax({
-        url: encodeURI(ZABBIX_API_URL),
+        url: encodeURI("processTrigger.do"),
         type: 'POST',
         accept: 'application/json',
         contentType: 'application/json-rpc',
@@ -193,11 +190,12 @@ function getProcessTriggers() {
         beforeSend: function () {
         },
         success: function (res) {
+		console.log("trigger:" + JSON.stringify(res));
             if (res.error) {
                 // 여기서 타이머를 멈추면 Alert 창이 나오지 않는다.
                 console.log(res.error);
             } else {
-                g_processTriggerList = res.result;
+                g_processTriggerList = res;
                 getProcessItems();
             }
         },

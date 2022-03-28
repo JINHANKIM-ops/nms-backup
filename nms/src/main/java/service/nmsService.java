@@ -19,7 +19,9 @@ import dto.processItemDTO;
 import dto.processTriggerDTO;
 import repository.groupItemRepository;
 import repository.hostItemRepository;
+import repository.problemsAlarmCheck;
 import repository.problemsAlarmRepository;
+import repository.problemsGroupCheck;
 import repository.processItemRepository;
 import repository.processTriggerRepository;
 
@@ -38,6 +40,10 @@ public class nmsService {
 	
 	public void setGroup_Itemrepository(groupItemRepository groupItemrepository) {
 		this.groupItemrepository = groupItemrepository;
+	}
+	
+	public groupItemRepository getGroupItemrepository() {
+		return groupItemrepository;
 	}
 
 	public List<groupItemDTO> groupInfo() throws ParseException {
@@ -62,6 +68,10 @@ public class nmsService {
 	 public void setHost_Itemrepository(hostItemRepository hostItemrepository) {
 		this.hostItemrepository = hostItemrepository;
 	}
+	
+	public hostItemRepository getHostItemrepository() {
+		return hostItemrepository;
+	}
 
 	public List<hostItemDTO> hostInfo() throws ParseException{ 
 		 hostItemApi hostItem = new hostItemApi(); 
@@ -81,6 +91,10 @@ public class nmsService {
 
 	public void setProcess_Itemrepository(processItemRepository processItemrepository) {
 		this.processItemrepository = processItemrepository;
+	}
+	
+	public processItemRepository getProcess_Itemrepository() {
+		return processItemrepository;
 	}
 	
 	public List<processItemDTO> processInfo() throws ParseException {
@@ -103,11 +117,17 @@ public class nmsService {
 		this.processTriggerrepository = processTriggerrepository;
 	}
 	
+	
+	public processTriggerRepository getProcess_Triggerrepository() {
+		return processTriggerrepository;
+	}
+	
+	
 	public List<processTriggerDTO> processTriggerInfo() throws ParseException {
 		processTriggerApi processTrigger = new processTriggerApi();
 		List<processTriggerDTO> processTrigger_List = processTrigger.processTrigger();
 		for(int i=0; i<processTrigger_List.size(); i++) {
-			if(processTriggerrepository.getProcessTriggerDto(processTrigger_List.get(i).getItemid()) != null) {
+			if(processTriggerrepository.getProcessTriggerDto(processTrigger_List.get(i).getTriggerid()) != null) {
 				processTriggerrepository.updateProcessTriggerDto(processTrigger_List.get(i));
 			} else {
 				processTriggerrepository.appendProcessTriggerDto(processTrigger_List.get(i));
@@ -123,11 +143,16 @@ public class nmsService {
 		this.problemsAlarmrepository = problemsAlarmrepository;
 	}
 	
+	public problemsAlarmRepository getProblems_Alarmrepository() {
+		return problemsAlarmrepository;
+	}
+	
 	public List<problemsAlarmDTO> problemAlarmInfo() throws ParseException {
 		problemsAlarmApi problemAlarm = new problemsAlarmApi();
 		List<problemsAlarmDTO> problemAlarm_List = problemAlarm.problemsAlarm();
+		problemsAlarmrepository.findAll().clear();
 		for(int i=0; i<problemAlarm_List.size(); i++) {
-			if(problemsAlarmrepository.getProblemsAlarmDto(problemAlarm_List.get(i).getObjectid()) != null) {
+			if(problemsAlarmrepository.getProblemsAlarmDto(problemAlarm_List.get(i).getEventid()) != null) {
 				problemsAlarmrepository.updateProblemsAlarmDto(problemAlarm_List.get(i));
 			} else {
 				problemsAlarmrepository.appendProblemsAlarmDto(problemAlarm_List.get(i));
@@ -135,5 +160,27 @@ public class nmsService {
 		}
 		return problemAlarm_List;
 	}
-	 
+	
+	@Autowired
+	problemsAlarmCheck problemsAlarmcheck;
+
+	public problemsAlarmCheck getProblems_Alarmcheck() {
+		return problemsAlarmcheck;
+	}
+
+	public void setProblems_Alarmcheck(problemsAlarmCheck problemsAlarmcheck) {
+		this.problemsAlarmcheck = problemsAlarmcheck;
+	}
+	
+	@Autowired
+	problemsGroupCheck problemsGroupcheck;
+
+	public problemsGroupCheck getProblems_Groupcheck() {
+		return problemsGroupcheck;
+	}
+
+	public void setProblems_Groupcheck(problemsGroupCheck problemsGroupcheck) {
+		this.problemsGroupcheck = problemsGroupcheck;
+	}
+	
 }

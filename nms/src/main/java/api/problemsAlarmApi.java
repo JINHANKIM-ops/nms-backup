@@ -7,11 +7,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import dto.problemsAlarmDTO;
 import dto.processTriggerDTO;
 
 public class problemsAlarmApi {
+	
+	private static final Logger logger = LoggerFactory.getLogger(problemsAlarmApi.class);
 	
 	public List<problemsAlarmDTO> problemsAlarm() throws ParseException{
 		String auth = "47405086481398866b0696edf90bfa53";
@@ -69,6 +73,7 @@ public class problemsAlarmApi {
 			problemsAlarmDto.setObjectid(problemAlarm_objs.get("objectid").toString());
 			
 			problemAlarm_list.add(problemsAlarmDto);
+//			logger.info("problem: {}",problemsAlarmDto);
 		}
 		return problemAlarm_list;
 	}

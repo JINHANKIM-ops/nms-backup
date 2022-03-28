@@ -23,10 +23,10 @@ public class problemsAlarmRepository {
     }
     
     public problemsAlarmDTO getProblemsAlarmDto(String id) {
-    	String pujectid="";
+    	String eventid="";
     	for(int i=0; i<problemsAlarmRepository.size(); i++) {
-    		pujectid = problemsAlarmRepository.get(i).getObjectid();
-    		if(id.equals(pujectid)) {
+    		eventid = problemsAlarmRepository.get(i).getEventid();
+    		if(id.equals(eventid)) {
     			return problemsAlarmRepository.get(i);
     		}
     	}
@@ -34,10 +34,10 @@ public class problemsAlarmRepository {
     }
     
     public boolean updateProblemsAlarmDto(problemsAlarmDTO newItem) {
-    	String oejectid="";
+    	String eventid="";
     	for(int i=0; i<problemsAlarmRepository.size(); i++) {
-    		oejectid = problemsAlarmRepository.get(i).getObjectid();
-    		if(newItem.getObjectid().equals(oejectid)) {
+    		eventid = problemsAlarmRepository.get(i).getEventid();
+    		if(newItem.getEventid().equals(eventid)) {
     			problemsAlarmRepository.set(i, newItem);
     			return true;
     		}

@@ -7,8 +7,8 @@ var DEFAULT_USER_ID = "";
 var DEFAULT_PASSWORD = "";
 var AUTH_KEY = "";
 var ENINMS_PRIFIX = "";
-var INTERVAL_GET_HOST = 0;
-var INTERVAL_GET_PROCESS = 0;
+var INTERVAL_GET_HOST = 5000;
+var INTERVAL_GET_PROCESS = 5000;
 
 var g_chartIndex = 0;
 var g_invokeId = 0;
@@ -40,7 +40,8 @@ function init() {
     }
 
     $('input:checkbox[id="checkbox"]').attr("checked", g_alarmToggle);
-    getEninmsInfo();
+    //getEninmsInfo();
+	startFetchTimer();
     CHART_SORT_INDEX = localStorage.getItem('sortBtn');
     // 이전에 저장된 값이 없을 경우, 기본값으로 CHART_CPU_INDEX 을 넣어준다.
     if (!CHART_SORT_INDEX) {
@@ -108,6 +109,7 @@ function saveAuthKey(auth) {
 
 function getEninmsInfo() {
     var eninmsInfoUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/info`;
+	console.log(eninmsInfoUrl);
     $.ajax({
         url: encodeURI(eninmsInfoUrl),
         type: 'GET',
@@ -254,7 +256,7 @@ function getHostUtils() {
     }
 
     $.ajax({
-        url: encodeURI(ZABBIX_API_URL),
+        url: encodeURI("hostItem.do"),
         type: 'POST',
         accept: 'application/json',
         contentType: 'application/json-rpc',
@@ -267,20 +269,20 @@ function getHostUtils() {
                 console.log(res.error);
             } else {
                 // console.log("getHostUtil_res:", JSON.stringify(res.result));
-                for (let i = 0; i < res.result.length; i++) {
-                    let host = getHost(res.result[i].hostid);
+                for (let i = 0; i < res.length; i++) {
+                    let host = getHost(res[i].hostid);
                     // console.log(host);
                     if (host == null) {
                         continue;
                     }
-                    if (res.result[i].key_ == 'system.cpu.util') {
-                        host.cpu = res.result[i].lastvalue;
+                    if (res[i].key_ == 'system.cpu.util') {
+                        host.cpu = res[i].lastvalue;
                     }
-                    if (res.result[i].key_ == 'vfs.fs.size[/,pused]') {
-                        host.disk = res.result[i].lastvalue;
+                    if (res[i].key_ == 'vfs.fs.size[/,pused]') {
+                        host.disk = res[i].lastvalue;
                     }
-                    if (res.result[i].key_ == 'vm.memory.utilization') {
-                        host.memory = res.result[i].lastvalue;
+                    if (res[i].key_ == 'vm.memory.utilization') {
+                        host.memory = res[i].lastvalue;
                     }
                 }
                 console.log("Monitor Group/Host List : ", JSON.stringify(g_arrGroup));
@@ -315,7 +317,7 @@ function getGroupData() {
     requestBody.params.sortfield = "name";
 
     $.ajax({
-        url: encodeURI(ZABBIX_API_URL),
+        url: encodeURI("groupItem.do"),
         type: 'POST',
         accept: 'application/json',
         contentType: 'application/json-rpc',
@@ -332,19 +334,19 @@ function getGroupData() {
                 }
             } else {
                 g_arrGroup = [];
-                console.log("group_res:", JSON.stringify(res.result));
-                for (let hostIndex = 0; hostIndex < res.result.length; hostIndex++) {
+                //console.log("group_res:", JSON.stringify(res));
+                for (let hostIndex = 0; hostIndex < res.length; hostIndex++) {
                     var group = "";
                     var server = "";
                     // TODO: 예외처리 필요, groups가 없을 경우, groups가 2개 이싱일 경우
                     // 0 번째 측 문자열 시작이 ENINMS_PREFIX 가 아닌 것은 사용하지 않음.
-                    if (res.result[hostIndex].groups[0].name.indexOf(ENINMS_PRIFIX) != 0) {
+                    if (res[hostIndex].groups[0].name.indexOf(ENINMS_PRIFIX) != 0) {
                         continue;
                     }
                     // 기존에 저장된 거에서 같은 그룹을 찾아온다
                     let findIndex = -1;
                     for (let i = 0; i < g_arrGroup.length; i++) {
-                        if (g_arrGroup[i].groupid == res.result[hostIndex].groups[0].groupid) {
+                        if (g_arrGroup[i].groupid == res[hostIndex].groups[0].groupid) {
                             findIndex = i;
                             break;
                         }
@@ -352,18 +354,18 @@ function getGroupData() {
                     //못찾을 경우
                     if (findIndex == -1) {
                         let group = {};
-                        group.groupid = res.result[hostIndex].groups[0].groupid;
-                        group.name = res.result[hostIndex].groups[0].name.replace(ENINMS_PRIFIX, "");
+                        group.groupid = res[hostIndex].groups[0].groupid;
+                        group.name = res[hostIndex].groups[0].name.replace(ENINMS_PRIFIX, "");
                         group.hosts = [];
                         g_arrGroup.push(group);
                         findIndex = g_arrGroup.length - 1;
                     }
 
                     let host = {};
-                    host.hostid = res.result[hostIndex].hostid;
-                    host.name = res.result[hostIndex].name;
-                    host.available = res.result[hostIndex].available;
-                    host.disable_until = res.result[hostIndex].disable_until;
+                    host.hostid = res[hostIndex].hostid;
+                    host.name = res[hostIndex].name;
+                    host.available = res[hostIndex].available;
+                    host.disable_until = res[hostIndex].disable_until;
                     g_arrGroup[findIndex].hosts.push(host);
                 }
                 g_arrGroup = g_arrGroup.sort(function (a, b) {

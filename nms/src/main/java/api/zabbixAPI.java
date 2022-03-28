@@ -39,7 +39,7 @@ public class zabbixAPI {
                          BufferedReader reader = new BufferedReader(isr)) {
                         String line;
                         while ((line = reader.readLine()) != null) {
-                        	logger.info("ZabbixApi : {}", line);
+                        	//logger.info("ZabbixApi : {}", line);
                                 return line; //Receive JSON data here
                         }
                     }

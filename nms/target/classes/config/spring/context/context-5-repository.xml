@@ -27,4 +27,11 @@
 		<!-- <beans:property name="nms_dao" ref="nms_daoBean" /> -->
 	</beans:bean>
 	
+	<beans:bean id="nms_problemsAlarmCheckBean" class="repository.problemsAlarmCheck">
+		<!-- <beans:property name="nms_dao" ref="nms_daoBean" /> -->
+	</beans:bean>
+	
+	<beans:bean id="nms_problemsGroupCheckBean" class="repository.problemsGroupCheck">
+		<!-- <beans:property name="nms_dao" ref="nms_daoBean" /> -->
+	</beans:bean>
 </beans:beans>

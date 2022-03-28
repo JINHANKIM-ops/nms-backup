@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import dto.groupItemDTO;
 import dto.hostItemDTO;
 import dto.problemsAlarmDTO;
@@ -80,37 +82,40 @@ public class NMScontroller {
 	public void setNms_problemsAlarmBean(problemsAlarmRepository nms_problemsAlarmBean) {
 		this.nms_problemsAlarmBean = nms_problemsAlarmBean;
 	}
-
+	
+	@RequestMapping("/")
+	public String main() {
+		return "index";
+	}
+	
 	@RequestMapping("groupItem.do")
-//	@ResponseBody
-	public ModelAndView groupItem() throws ParseException {
-		ModelAndView mav = new ModelAndView("testPage");
-		mav.addObject("group", getNms_groupItemBean().findAll());
-		return mav;
+	@ResponseBody
+	public String groupItem() throws ParseException {
+		return new Gson().toJson(getNms_groupItemBean().findAll());
 	}
 	
 	@RequestMapping("hostItem.do")
 	@ResponseBody
-	public List<hostItemDTO> hostItem() throws ParseException {
-		return getNms_hostItemBean().findAll();
+	public String hostItem() throws ParseException {
+		return new Gson().toJson(getNms_hostItemBean().findAll());
 	}
 	
-	
 	@RequestMapping("processItem.do") 
-	@ResponseBody public List<processItemDTO> processItem() throws ParseException{ 
-		 return getNms_processItemBean().findAll(); 
+	@ResponseBody public String processItem() throws ParseException{
+		return new Gson().toJson(getNms_processItemBean().findAll());
 	}
 	
 	@RequestMapping("processTrigger.do")
 	@ResponseBody
-	public List<processTriggerDTO> processTrigger() throws ParseException {
-		return getNms_processTriggerBean().findAll();
+	public String processTrigger() throws ParseException {
+		logger.info("trigger: {}",new Gson().toJson(getNms_processTriggerBean().findAll()));
+		return new Gson().toJson(getNms_processTriggerBean().findAll());
 	}
 	 
 	@RequestMapping("problemsAlarmItem.do")
 	@ResponseBody
-	public List<problemsAlarmDTO> problemAlarmItem() throws ParseException {
-		return getNms_problemsAlarmBean().findAll();
+	public String problemAlarmItem() throws ParseException {
+		return new Gson().toJson(getNms_problemsAlarmBean().findAll());
 	}
 	  
 }
