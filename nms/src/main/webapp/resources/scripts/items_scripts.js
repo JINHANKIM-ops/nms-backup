@@ -31,13 +31,8 @@ function init() {
         g_alarmToggle = true;
     }
     console.log(`g_alarmToggle : ${g_alarmToggle}`);
-    if (g_alarmToggle == true) {
-        if (startBeep() == undefined) {
-            alert("Please turn on the alarm button to play alert sound manually!");
-            g_alarmToggle = false;
-        }
-        stopBeep();
-    }
+	alert("Please turn on the alarm button to play alert sound manually!");
+	g_alarmToggle = false;
 
     $('input:checkbox[id="checkbox"]').attr("checked", g_alarmToggle);
     //getEninmsInfo();
