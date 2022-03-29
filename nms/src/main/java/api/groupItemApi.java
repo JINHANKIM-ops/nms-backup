@@ -14,7 +14,9 @@ public class groupItemApi {
 	
 	public List<groupItemDTO> groupItem() throws ParseException {
 		String groupData;
-		String auth = "47405086481398866b0696edf90bfa53";
+		//TODO: authKey를 property 객체의 값으로 변경
+//		String auth = "47405086481398866b0696edf90bfa53";
+		String auth = "47405086481398866b0696edf90b";
 		String g_invokeId = "0";
 
 		zabbixAPI api = new zabbixAPI();
@@ -37,7 +39,7 @@ public class groupItemApi {
 		param.put("sortfield", "name");
 
 		groupData = api.Post(json);
-		
+
 		JSONParser parser = new JSONParser();
 		JSONObject group_obj = (JSONObject)parser.parse(groupData);
 		JSONArray group_arr = (JSONArray) group_obj.get("result");

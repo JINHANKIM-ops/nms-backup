@@ -1,5 +1,6 @@
 package scheduler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import config.NmsConfig;
 import dto.groupItemDTO;
 import dto.groupItemDetailDTO;
 import dto.hostItemDTO;
@@ -55,7 +57,17 @@ public class Scheduler {
 		processTriggerRepository processTriggerrepository = nmsservice.getProcess_Triggerrepository();
 		processItemRepository processItemrepository = nmsservice.getProcess_Itemrepository();
 		groupItemRepository groupItemrepository = nmsservice.getGroupItemrepository();
-		
+		NmsConfig nmsConfig = nmsservice.getNms_configBean();
+		logger.info("config : {}", nmsConfig.getProperty("auth"));
+		logger.info("config : {}", nmsConfig.getProperty("test"));
+		nmsConfig.setProperty("test", "test");
+		try {
+			nmsConfig.saveProperties();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("config : {}", nmsConfig.getProperty("test"));
 		List<problemsAlarmDTO> problemsAlarmList = problemsAlarmrepository.findAll();
 		List<processTriggerDTO> processTriggerList = processTriggerrepository.findAll();
 		List<processItemDTO> processItemList = processItemrepository.findAll();

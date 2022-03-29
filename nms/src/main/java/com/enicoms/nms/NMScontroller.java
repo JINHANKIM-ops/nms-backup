@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import config.NmsConfig;
 import dto.groupItemDTO;
 import dto.hostItemDTO;
 import dto.problemsAlarmDTO;
@@ -83,11 +84,17 @@ public class NMScontroller {
 		this.nms_problemsAlarmBean = nms_problemsAlarmBean;
 	}
 	
-	@RequestMapping("/")
-	public String main() {
-		return "index";
-	}
+	@Autowired
+	NmsConfig nms_configBean;
 	
+	public NmsConfig getNms_configBean() {
+		return nms_configBean;
+	}
+
+	public void setNms_configBean(NmsConfig nms_configBean) {
+		this.nms_configBean = nms_configBean;
+	}
+
 	@RequestMapping("groupItem.do")
 	@ResponseBody
 	public String groupItem() throws ParseException {

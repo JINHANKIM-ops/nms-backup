@@ -16,6 +16,7 @@
 		<beans:property name="problems_Alarmrepository" ref="nms_problemsAlarmBean" />
 		<beans:property name="problems_Alarmcheck" ref="nms_problemsAlarmCheckBean" />
 		<beans:property name="problems_Groupcheck" ref="nms_problemsGroupCheckBean" />
+		<beans:property name="nms_configBean" ref="nms_configBean" />
 	</beans:bean>
 	
 </beans:beans>

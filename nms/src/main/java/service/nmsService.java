@@ -11,6 +11,7 @@ import api.hostItemApi;
 import api.problemsAlarmApi;
 import api.processItemApi;
 import api.processTriggerApi;
+import config.NmsConfig;
 import dao.nmsDAO;
 import dto.groupItemDTO;
 import dto.hostItemDTO;
@@ -181,6 +182,17 @@ public class nmsService {
 
 	public void setProblems_Groupcheck(problemsGroupCheck problemsGroupcheck) {
 		this.problemsGroupcheck = problemsGroupcheck;
+	}
+	
+	@Autowired
+	NmsConfig nms_configBean;
+
+	public NmsConfig getNms_configBean() {
+		return nms_configBean;
+	}
+
+	public void setNms_configBean(NmsConfig nms_configBean) {
+		this.nms_configBean = nms_configBean;
 	}
 	
 }

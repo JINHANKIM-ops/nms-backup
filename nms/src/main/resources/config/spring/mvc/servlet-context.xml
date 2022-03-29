@@ -41,6 +41,7 @@
 		<beans:property name="nms_processItemBean" ref="nms_processItemBean" />
 		<beans:property name="nms_processTriggerBean" ref="nms_processTriggerBean" />
 		<beans:property name="nms_problemsAlarmBean" ref="nms_problemsAlarmBean" />
+		<beans:property name="nms_configBean" ref="nms_configBean" />
 	</beans:bean> 
 	
 </beans:beans>

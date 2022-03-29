@@ -1,0 +1,22 @@
+{
+    "app": {
+        "logpath": "../logs"
+    },
+    "server": {
+        "zabbixHost": "119.66.109.149",
+        "zabbixPort": "10480",
+        "protocol": "http:",
+        "auth": "faa0bf3faa3754ed74cb3e440434162d",
+        "id": "Admin",
+        "password": "zabbix"
+    },
+    "monitoring": {
+        "prefix": "ENINMS "
+    },
+    "client": {
+        "intervalGetHost": 5000,
+        "intervalGetProcess": 3000
+    },
+
+	"sms": ["010-1234-1234", "010-1111-1111"]
+}
